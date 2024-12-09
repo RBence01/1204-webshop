@@ -1,0 +1,8 @@
+nav {
+    display: block;
+    flex-wrap: wrap;
+}
+
+nav .left {
+    float: right;
+}

@@ -16,11 +16,11 @@ export class UsersService {
   }
 
   findAll() {
-    return this.db.user.findMany();
+    return this.db.user.findMany({select: {username: true}});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(username: string) {
+    return this.db.user.findUnique({where: {username}, select: {username: true}});
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

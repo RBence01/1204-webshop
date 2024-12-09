@@ -26,7 +26,7 @@ model User {
 model Product {
   sku Int @id @unique
   name String
-  discription String
+  description String
   price Decimal @db.Decimal(7, 2)
   discount Decimal? @db.Decimal(7, 2)
 

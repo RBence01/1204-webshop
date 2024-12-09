@@ -2,7 +2,7 @@ import { CreateUserDto } from './../users/dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
-import { hash } from 'bcrypt'
+import { hash, compare } from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -12,8 +12,10 @@ export class AuthService {
 	) { }
 
 	async signIn(username: string, password: string) {
-		const user = await this.db.user.findUnique({ where: { username, password: hash(password, 10) } })
-		if (!user) throw new UnauthorizedException()
+    if (!username || !password) throw new UnauthorizedException();
+		const user = await this.db.user.findUnique({ where: { username: username } })
+		if (!user) throw new UnauthorizedException();
+    if (!(await compare(password, user.password))) throw new UnauthorizedException();
 		return {
 			access_token: await this.jwtService.signAsync({ sub: user.email, username: user.username })
 		}
@@ -21,10 +23,10 @@ export class AuthService {
 
   async signUp(dto: CreateUserDto) {
     try {
-      const user = await this.db.user.create({data: {...dto, password: hash(dto.password, 10)}});
+      const user = await this.db.user.create({data: {...dto, password: await hash(dto.password, 10)}});
       return {access_token: await this.jwtService.signAsync({sub: user.email, username: user.username })};
-    } catch {
-      return false;
+    } catch (error) {
+      return error.message;
     }
   }
 }
