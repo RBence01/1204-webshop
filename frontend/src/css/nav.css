@@ -1,8 +1,24 @@
 nav {
-    display: block;
+    display: flex;
     flex-wrap: wrap;
+    background-color: var(--bg-secondary);
+    align-items: center;
+    padding: 0 10px;
+}
+
+nav a {
+    background-color: transparent;
+    padding: 10px 5px;
+    border-bottom: 1px solid;
+    border-color: transparent;
+    transition: all .2s ease;
+}
+
+nav a:hover {
+    background-color: var(--bg-contrast);
+    border-color: var(--border-high-contrast);
 }
 
 nav .left {
-    float: right;
+    margin-left: auto;
 }

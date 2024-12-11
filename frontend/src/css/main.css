@@ -1,0 +1,105 @@
+:root {
+    --bg-primary: #1F1F1F;
+    --bg-secondary: #2A2A2A;
+    --bg-contrast: #3A3A3A;
+    --text-primary: #E0E0E0;
+    --text-secondary: #B0B0B0;
+    --text-heading: #FFFFFF;
+    --link-text: #00B5B8;
+    --link-text-hover: #009B9B;
+    --border: #333333;
+    --border-contrast: #444444;
+    --border-high-contrast: #555555;
+    --error: #FF5C5C;
+    --success: #4CAF50;
+    --input-bg: #3A3A3A;
+    --shadow: rgba(0, 0, 0, 0.5);
+}
+
+body {
+    background-color: var(--bg-primary);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--text-primary);
+    caret-color: var(--text-heading);
+    margin: 0;
+}
+
+main {
+    margin: 10px;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--text-heading);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--text-heading);
+}
+
+button {
+    border: 1px solid;
+    padding: 5px;
+    border-color: var(--border-contrast);
+    border-radius: 5px;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    outline: 0;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--bg-contrast);
+}
+
+input {
+    display: block;
+    background-color: var(--input-bg);
+    border: 1px solid;
+    border-color: var(--border);
+    border-radius: 5px;
+    outline: 0;
+    color: var(--text-primary);
+    transition: border-color .2s ease;
+}
+
+input:hover {
+    border-color: var(--border-high-contrast);
+}
+
+input[type="submit"] {
+    color: var(--text-heading);
+    padding: 5px;
+    cursor: pointer;
+}
+
+input:not([type="submit"]) {
+    padding: 5px;
+}
+
+input:focus {
+    border-color: var(--text-primary);
+}
+
+*[class^="alert"] {
+    width: 80%;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px auto;
+}
+
+.alert-error {
+    background-color: var(--error);
+    color: var(--text-primary);
+}

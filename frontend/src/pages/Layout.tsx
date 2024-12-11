@@ -1,19 +1,26 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import "../css/nav.css";
 import Cookies from "universal-cookie";
 
 export default function Layout() {
-    const navigate = useNavigate();
+    const cookies = new Cookies();
     function logout() {
-        const cookies = new Cookies();
         cookies.remove("access_token");
-        navigate("/");  
+        window.location.reload();
+    }
+    function login() {
+        window.location.href = "/login";
     }
     return <>
         <nav>
-            <Link to={"/"}>alma</Link>
-            <button className="left" onClick={logout}>Logout</button>
+            <Link to={"/"}>Home</Link>
+            {cookies.get("access_token") ?
+            <button className="left" onClick={logout}>Logout</button> :
+            <button className="left" onClick={login}>Login</button>
+            }
         </nav>
-        <Outlet/>
+        <main>
+            <Outlet/>
+        </main>
     </>
 }

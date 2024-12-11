@@ -13,10 +13,11 @@ export class AuthService {
 
 	async signIn(username: string, password: string) {
     if (!username || !password) throw new UnauthorizedException();
-		const user = await this.db.user.findUnique({ where: { username: username } })
+		const user = await this.db.user.findUnique({ where: { username } })
 		if (!user) throw new UnauthorizedException();
+    if (user.username != username) throw new UnauthorizedException();
     if (!(await compare(password, user.password))) throw new UnauthorizedException();
-		return {
+  return {
 			access_token: await this.jwtService.signAsync({ sub: user.email, username: user.username })
 		}
 	}

@@ -1,0 +1,23 @@
+.login label {
+    display: block;
+    margin: 10px 0;
+}
+
+.login {
+    width: min(70%, 600px);
+    margin: 10px auto;
+}
+
+.login input {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.login label {
+    width: 100%;
+}
+
+.login input[type="submit"] {
+    width: 80%;
+}
