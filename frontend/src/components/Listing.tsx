@@ -19,6 +19,6 @@ export default function Listing() {
     if (!data) return;
 
     return <>
-        
+        {data.map(e => <div>{e.name}</div>)}
     </>
 }

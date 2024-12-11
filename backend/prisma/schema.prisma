@@ -14,7 +14,8 @@ datasource db {
 }
 
 model User {
-  username String @id @unique
+  id Int @id @default(autoincrement())
+  username String @unique
   email String @unique
   password String
   type UserType
@@ -24,7 +25,7 @@ model User {
 }
 
 model Product {
-  sku Int @id @unique
+  sku Int @unique @id
   name String
   description String
   img String
@@ -37,8 +38,8 @@ model Product {
 model Purchase {
   id Int @id @default(autoincrement())
 
-  username String?
-  user User? @relation(fields: [username], references: [username], onDelete: SetNull, onUpdate: Cascade)
+  userId Int?
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
 
   products Product[]
 }
