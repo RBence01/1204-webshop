@@ -15,21 +15,21 @@ export class ProductsService {
     return this.db.product.findMany();
   }
 
-  findOne(id: number) {
-    return this.db.product.findUnique({where: {id}});
+  findOne(sku: number) {
+    return this.db.product.findUnique({where: {sku}});
   }
 
-  async update(id: number, updateProductDto: UpdateProductDto) {
+  async update(sku: number, updateProductDto: UpdateProductDto) {
     try {
-      return this.db.product.update({where: {id}, data: updateProductDto});
+      return this.db.product.update({where: {sku}, data: updateProductDto});
     } catch {
       return undefined;
     }
   }
 
-  async remove(id: number) {
+  async remove(sku: number) {
     try {
-      return await this.db.product.delete({where: {id}});
+      return await this.db.product.delete({where: {sku}});
     } catch {
       return undefined;
     }

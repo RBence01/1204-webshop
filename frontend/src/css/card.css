@@ -1,0 +1,51 @@
+.card {
+    width: 200px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: var(--bg-secondary);
+    transition: background-color .2s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: var(--bg-contrast);
+}
+
+.card:hover img {
+    
+}
+
+.card .prices span::before {
+    content: "$";
+}
+
+.card .prices {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card .cardName {
+    width: 100%;
+    text-align: center;
+}
+
+.card .discount {
+    color: green;
+}
+
+.card .price {
+    color: green;
+}
+
+.card .discount+.price {
+    color: red;
+    text-decoration: line-through;
+}
+
+.card img {
+    width: 100%;
+}

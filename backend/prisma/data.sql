@@ -6,11 +6,11 @@ INSERT INTO user (username, email, password, type, promotionalEmails) VALUES
 ('bob', 'bob.brown@example.com', '$2b$10$0XQffCLAAYVrAwKzjBplA.e4.O4qKGGpdDTstWgf.smoO9W7aNSIi', 'customer', TRUE);
 
 INSERT INTO product (sku, name, description, img, price, discount) VALUES
-(1001, 'Small Unicorn Plush', 'A small, cuddly unicorn plush toy, perfect for kids.', 'small_unicorn_plush.jpg', 19.99, 2.00),
-(1002, 'Medium Unicorn Plush', 'A medium-sized, soft unicorn plush with rainbow mane.', 'medium_unicorn_plush.jpg', 39.99, 5.00),
-(1003, 'Large Unicorn Plush', 'A large unicorn plush with glittery horn and soft, plush body.', 'large_unicorn_plush.jpg', 59.99, 10.00),
-(1004, 'Giant Unicorn Plush', 'A giant, huggable unicorn plush that makes a perfect gift.', 'giant_unicorn_plush.jpg', 99.99, 15.00),
-(1005, 'Deluxe Unicorn Plush', 'An ultra-soft deluxe unicorn plush with embroidered details.', 'deluxe_unicorn_plush.jpg', 79.99, NULL);
+(1001, 'Small Unicorn Plush', 'A small, cuddly unicorn plush toy, perfect for kids.', 'https://img.joomcdn.net/4e42ae0ad0c6474f9f964d30db9b67b4b196aa69_original.jpeg', 19.99, 2.00),
+(1002, 'Medium Unicorn Plush', 'A medium-sized, soft unicorn plush with rainbow mane.', 'https://i5.walmartimages.com/seo/TY-Beanie-Boos-MAGIC-the-Pink-Unicorn-Glitter-Eyes-Medium-Size-9-inch_9d7f21d2-5789-40a6-9693-57b3505427b6.e327970f27279582936ca471ffa955a1.jpeg', 39.99, 5.00),
+(1003, 'Large Unicorn Plush', 'A large unicorn plush with glittery horn and soft, plush body.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXU7VNkZjltWojZGbwL1_YYDOfz7E6c0fFog&s', 59.99, 10.00),
+(1004, 'Giant Unicorn Plush', 'A giant, huggable unicorn plush that makes a perfect gift.', 'https://www.mangopeopleshop.com/cdn/shop/files/giant-unicorn-plush-toy-850_1200x1200.jpg?v=1708755496', 99.99, 15.00),
+(1005, 'Deluxe Unicorn Plush', 'An ultra-soft deluxe unicorn plush with embroidered details.', 'https://discowaffle.com/cdn/shop/products/Honeythunder-15-fullfront_497x1_0385986d-9f88-4cc1-94f6-9ffccbcd5047.jpg?v=1641304936&width=297', 79.99, NULL);
 
 INSERT INTO purchase (userId) VALUES
 (1), (2), (4), (5), (1);

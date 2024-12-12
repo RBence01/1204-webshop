@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Product } from "../types";
+import Card from "./Card";
 
 export default function Listing() {
     const [data, setData] = useState<Product[] | undefined>(undefined);
@@ -19,6 +20,6 @@ export default function Listing() {
     if (!data) return;
 
     return <>
-        {data.map(e => <div>{e.name}</div>)}
+        {data.map(e => <Card product={e}/>)}
     </>
 }
