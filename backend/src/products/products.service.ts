@@ -34,4 +34,8 @@ export class ProductsService {
       return undefined;
     }
   }
+
+  findSkus(skus: number[]) {
+    return this.db.product.findMany({where: {sku: {in: skus}}});
+  }
 }

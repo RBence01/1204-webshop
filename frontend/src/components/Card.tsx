@@ -1,17 +1,13 @@
 import { Product } from "../types";
 import "../css/card.css";
-import Cookies from "universal-cookie";
+import { useCartCookie } from "./CartCookieContext";
 
-export default function Card({product, addToCart = true}: {product: Product, addToCart?: boolean}) {
-    const cookies = new Cookies();
+export default function Card({product, addToCart = false}: {product: Product, addToCart?: boolean}) {
+    const cartcookie = useCartCookie();
     function add() {
-        if (cookies.get("cart")) {
-            const cart = cookies.get("cart");
-            cart.push(product.sku);
-            cookies.set("cart", cart);
-        } else {
-            cookies.set("cart", [product.sku]);
-        }
+        console.log(product.sku);
+        console.log(cartcookie.cookieValue);
+        cartcookie.add(product.sku);
     }
     return <div className="card">
         <img src={product.img} alt={product.name} />
