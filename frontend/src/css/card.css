@@ -9,11 +9,17 @@
 }
 
 .card:hover {
-    background-color: var(--bg-contrast);
+    background-color: var(--bg-contrast-low);
+}
+
+
+.card img {
+    width: 100%;
+    transition: all 0.2s ease;
 }
 
 .card:hover img {
-    
+    transform: scale(1.05);
 }
 
 .card .prices span::before {
@@ -44,8 +50,4 @@
 .card .discount+.price {
     color: red;
     text-decoration: line-through;
-}
-
-.card img {
-    width: 100%;
 }

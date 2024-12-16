@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma.service';
@@ -11,8 +11,10 @@ export class UsersService {
     private readonly auth: AuthService
   ) {}
 
-  create(createUserDto: CreateUserDto) {
-    return this.auth.signUp(createUserDto);
+  async create(createUserDto: CreateUserDto) {
+    const response = await this.auth.signUp(createUserDto);
+    if (response) return response;
+    else throw new BadRequestException();
   }
 
   findAll() {

@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import "../css/login.css";
 
@@ -17,8 +17,6 @@ export default function Login() {
     async function submit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const data = new FormData(event.target as HTMLFormElement);
-        console.log(data.get("username"));
-        console.log(data.get("password"));
         const response = await fetch('http://localhost:3000/login', {
             method: "POST",
             headers: { 'content-type': 'application/json' },
@@ -51,6 +49,7 @@ export default function Login() {
             <input type="password" name="password" id="password" required />
         </label>
         <input type="submit" value="Login" />
-        {status && <p className="alert-error">{status}</p> }
+        <Link to={"/register"}>Register</Link>
+        {status && <p className="alert-error appear">{status}</p> }
     </form>
 }

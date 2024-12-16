@@ -27,7 +27,7 @@ export class AuthService {
       const user = await this.db.user.create({data: {...dto, password: await hash(dto.password, 10)}});
       return {access_token: await this.jwtService.signAsync({sub: user.email, username: user.username })};
     } catch (error) {
-      return error.message;
+      return undefined;
     }
   }
 }

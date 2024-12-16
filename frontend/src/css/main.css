@@ -1,6 +1,7 @@
 :root {
     --bg-primary: #1F1F1F;
     --bg-secondary: #2A2A2A;
+    --bg-contrast-low: #303030;
     --bg-contrast: #3A3A3A;
     --text-primary: #E0E0E0;
     --text-secondary: #B0B0B0;
@@ -92,6 +93,17 @@ input:focus {
     border-color: var(--text-primary);
 }
 
+input[type="checkbox"] {
+    width: fit-content;
+    margin: 0 10px;
+    outline: none;
+}
+
+label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+}
+
 *[class^="alert"] {
     width: 80%;
     border-radius: 5px;
@@ -102,4 +114,27 @@ input:focus {
 .alert-error {
     background-color: var(--error);
     color: var(--text-primary);
+}
+
+.appear {
+    animation: appear 0.5s ease forwards;
+}
+
+.addToCart {
+    display: block;
+    margin: 10px auto;
+    font-size: 20px;
+}
+
+.addToCart:hover {
+    background-color: var(--bg-contrast);
+}
+
+@keyframes appear {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
 }

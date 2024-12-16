@@ -2,7 +2,7 @@ import Listing from "../components/Listing";
 
 export default function Home() {
     return <>
-        <h1>Home</h1>
+        <h2>Recommended for you</h2>
         <Listing/>
     </>
 }

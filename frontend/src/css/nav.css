@@ -14,11 +14,22 @@ nav a {
     transition: all .2s ease;
 }
 
-nav a:hover {
+nav a:not(:has(.icon)):hover {
     background-color: var(--bg-contrast);
     border-color: var(--border-high-contrast);
 }
 
 nav .left {
     margin-left: auto;
+}
+
+nav .icon {
+    cursor: pointer;
+    height: 30px;
+    filter: invert(0);
+    transition: all 0.2s ease;
+}
+
+nav .icon:hover {
+    filter: invert(1);
 }
