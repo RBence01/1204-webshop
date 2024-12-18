@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie"
 import { Product } from "../types";
-import Card from "../components/Card";
-import CartCard from "../components/CartCard";
+import CartListing from "../components/CartListing";
 
 export default function Cart() {
     const cookies = new Cookies();
-    const skus: [number] = cookies.get("cart");
-    if (!skus) return <h1>Your cart is empty!</h1>;
+    const cart: {[key: number]: number} = cookies.get("cart");
+    if (!cart) return <h1>Your cart is empty!</h1>;
     const [products, setProducts] = useState<Product[] | undefined>(undefined);
     useEffect(() => {
         async function load() {
@@ -16,7 +15,7 @@ export default function Cart() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({skus})
+                body: JSON.stringify(Object.keys(cart))
             });
             setProducts(await response.json());
         }
@@ -25,15 +24,7 @@ export default function Cart() {
 
     if (!products) return;
 
-    const skusCounts: {[key: number]: number} = {};
-    skus.forEach(e => {
-        if (skusCounts[e]) skusCounts[e]++;
-        else skusCounts[e] = 1;
-    });
-
     return <>
-        <div className="cart-items">
-            {products.map(e => <CartCard product={e} amount={skusCounts[e.sku]}/>)}
-        </div>
+        <CartListing products={products} skuCount={cart}/>
     </>
 }

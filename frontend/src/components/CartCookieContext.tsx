@@ -24,19 +24,26 @@ export const CartCookieProvider: React.FC<CookieProviderProps> = ({ children }) 
   const [cookieValue, setCookieValue] = useState<number>(0);
 
   const updateCookie = () => {
-    if (cookies.get("cart")) setCookieValue(Math.min(cookies.get("cart").length, 99));
+    if (cookies.get("cart")) {
+      const cart: {[key: number]: number} = cookies.get("cart");
+      setCookieValue(Math.min(Object.values(cart).reduce((a, b) => a+b,0), 99));
+    }
     else setCookieValue(0);
   };
 
   const add = (sku: number) => {
     if (cookies.get("cart")) {
-      const cart = cookies.get("cart");
-      cart.push(sku);
+      const cart: {[key: number]: number} = cookies.get("cart");
+      if (cart[sku]) cart[sku]++;
+      else cart[sku] = 1;
       console.log(cart);
       cookies.set("cart", cart);
-      setCookieValue(Math.min(cart.length, 99));
+
+      setCookieValue(Math.min(Object.values(cart).reduce((a, b) => a+b,0), 99));
     } else {
-      cookies.set("cart", [sku]);
+      const cart: {[key: number]: number} = {};
+      cart[sku] = 1;
+      cookies.set("cart", cart);
       setCookieValue(1);
     }
   }

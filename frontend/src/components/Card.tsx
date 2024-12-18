@@ -5,8 +5,6 @@ import { useCartCookie } from "./CartCookieContext";
 export default function Card({product, addToCart = false}: {product: Product, addToCart?: boolean}) {
     const cartcookie = useCartCookie();
     function add() {
-        console.log(product.sku);
-        console.log(cartcookie.cookieValue);
         cartcookie.add(product.sku);
     }
     return <div className="card">

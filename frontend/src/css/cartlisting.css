@@ -1,0 +1,62 @@
+.cartlisting img {
+    width: 100px;
+}
+
+.cartlisting thead th {
+    text-align: left;
+    padding: 5px;
+}
+
+.cartlisting thead h2 {
+    margin: 0;
+}
+
+.cartlisting .prices span::before,
+.cartlisting .total::before {
+    content: '$';
+}
+
+.cartlisting {
+    border-collapse: collapse;
+}
+
+.cartlisting tr td {
+    padding: 5px;
+}
+
+.cartlisting tr:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+}
+
+.cartlisting .prices {
+    border-left: 1px solid var(--border);
+}
+
+.cartlisting .prices span:first-child {
+    margin-right: 10px;
+}
+
+.cartlisting .price {
+    color: green;
+}
+
+.cartlisting .discount {
+    color: red;
+    text-decoration: line-through;
+}
+
+.cartlisting .amount {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cartlisting .amount button {
+    border: none;
+    background: none;
+}
+
+.cartlisting .amount button:hover {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--text-primary), 0 0 20px var(--text-primary), 0 0 25px var(--text-primary), 0 0 30px var(--text-primary), 0 0 35px var(--text-primary);
+    color: var(--text-heading);
+}
