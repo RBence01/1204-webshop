@@ -1,11 +1,13 @@
-import { Controller, Get, Post, Body, Param, ExecutionContext } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, ExecutionContext, UseGuards, HttpCode, Request, BadRequestException, Patch } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { Public } from 'src/auth/auth.guard';
+import { AuthGuard, Public } from 'src/auth/auth.guard';
+import { AuthService } from 'src/auth/auth.service';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService, private readonly auth: AuthService) { }
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
@@ -18,8 +20,25 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':username')
-  findOne(@Param('username') username: string) {
-    return this.usersService.findOne(username);
+  @UseGuards(AuthGuard)
+  @Get('isLoggedIn')
+  isLoggedIn(@Request() req) {
+    return this.usersService.findOne(req.user.id);
+  }
+
+  @Post('login')
+  login(@Body('username') username: string, @Body('password') password: string) {
+    if (!username || !password) throw new BadRequestException("All fields are required!");
+    return this.auth.signIn(username, password);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.usersService.findOne(+id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(+id, updateUserDto);
   }
 }

@@ -1,23 +1,15 @@
-import Cookies from "universal-cookie";
 import Listing from "../components/Listing";
-import { useEffect, useState } from "react";
+import { useCartCookie } from "../components/CartCookieContext";
+import { useEffect } from "react";
 
 export default function Products() {
-    const cookies = new Cookies();
+    const cartcookie = useCartCookie();
 
-    
-	const [status, setStatus] = useState<number>(-1); 
     useEffect(() => {
-        fetch('http://localhost:3000/isLoggedIn', {
-            method: "GET",
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                "Authorization": "Bearer " + cookies.get("access_token")
-            })
-        }).then(e => setStatus(e.status));
+        cartcookie.getUserData();
     }, []);
 
-    if (status == -1) return;
+    if (cartcookie.user === undefined) return;
 
-    return <Listing addToCart={status != 401}/>
+    return <Listing addToCart={cartcookie.user != null}/>
 }

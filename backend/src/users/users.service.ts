@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma.service';
 import { AuthService } from 'src/auth/auth.service';
+import { hash } from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -21,12 +22,13 @@ export class UsersService {
     return this.db.user.findMany({select: {username: true}});
   }
 
-  findOne(username: string) {
-    return this.db.user.findUnique({where: {username}, select: {username: true}});
+  findOne(id: number) {
+    return this.db.user.findUnique({where: {id}, select: {username: true, email: true, promotionalEmails: true, id: true}});
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    if (updateUserDto.password) updateUserDto.password = await hash(updateUserDto.password, 10);
+    return await this.db.user.update({where: {id}, data: updateUserDto});
   }
 
   remove(id: number) {

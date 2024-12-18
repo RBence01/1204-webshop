@@ -36,15 +36,15 @@ export default function Register() {
     return <form className="login" onSubmit={submit}>
         <label>
             Username
-            <input type="text" name="username" />
+            <input type="text" name="username" required/>
         </label>
         <label>
             Email
-            <input type="email" name="email" />
+            <input type="email" name="email" required/>
         </label>
         <label>
             Password
-            <input type="password" name="password" />
+            <input type="password" name="password" required/>
         </label>
         <label>
             Recieve emails:

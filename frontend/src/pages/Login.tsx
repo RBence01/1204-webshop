@@ -17,7 +17,7 @@ export default function Login() {
     async function submit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const data = new FormData(event.target as HTMLFormElement);
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('http://localhost:3000/users/login', {
             method: "POST",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({

@@ -1,26 +1,19 @@
-import Cookies from "universal-cookie";
+import { useEffect } from "react";
 import Login from "../pages/Login";
-import { useEffect, useState } from "react";
+import { useCartCookie } from "./CartCookieContext";
 
 export default function Auth({children} : { children: React.ReactElement }) {
-    const cookies = new Cookies();
-    if (!cookies.get("access_token")) return <Login/>
+    const cartcookie = useCartCookie();
 
-	const [status, setStatus] = useState<number>(-1); 
-    useEffect(() => {
-        fetch('http://localhost:3000/isLoggedIn', {
-            method: "GET",
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                "Authorization": "Bearer " + cookies.get("access_token")
-            })
-        }).then(e => setStatus(e.status));
+    useEffect(() =>{
+        cartcookie.getUserData();
     }, []);
-    
-    if (status == -1) return;
 
-	if (status == 401) {
-		return <Login />;
+    
+    if (cartcookie.user === undefined) return;
+
+	if (cartcookie.user === null) {
+		window.location.href = "/login";
 	}
 	return children;
 };
