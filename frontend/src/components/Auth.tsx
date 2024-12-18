@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Login from "../pages/Login";
 import { useCartCookie } from "./CartCookieContext";
 
 export default function Auth({children} : { children: React.ReactElement }) {
